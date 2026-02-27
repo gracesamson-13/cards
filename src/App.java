@@ -2,7 +2,7 @@ import processing.core.PApplet;
 
 public class App extends PApplet {
 
-    CardGame cardGame = new Uno();
+    CardGame cardGame = new CardGame();
     private int timer;
 
     public static void main(String[] args) {
@@ -73,3 +73,4 @@ public class App extends PApplet {
     }
 
 }
+

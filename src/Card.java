@@ -10,6 +10,9 @@ public class Card extends ClickableRectangle {
     private boolean selected = false;
     private int baseY;
     private boolean hasBaseY = false;
+    CardType type;
+    Card card = new Card(value, suit);
+
 
     Card(String value, String suit) {
         this.value = value;
@@ -92,4 +95,14 @@ public class Card extends ClickableRectangle {
         }
         sketch.strokeWeight(1);
     }
+
+    public void setType(CardType type) {
+    this.type = type;
 }
+
+}
+
+
+
+
+

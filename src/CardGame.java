@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -190,7 +191,6 @@ public class CardGame {
     }
 
     public void drawChoices(PApplet app) {
-        // this method is available for overriding
-        // if you want to draw additional things (like Uno's wild color choices)
+   
     }
 }
