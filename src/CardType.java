@@ -6,6 +6,6 @@ public class CardType {
     }
 
     public String getDescription() {
-        return "Generic card type";
+        return "Card type";
     }
 }

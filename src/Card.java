@@ -11,7 +11,8 @@ public class Card extends ClickableRectangle {
     private int baseY;
     private boolean hasBaseY = false;
     CardType type;
-    Card card = new Card(value, suit);
+    CardType Number;
+    CardType Face;
 
 
     Card(String value, String suit) {
@@ -75,24 +76,24 @@ public class Card extends ClickableRectangle {
     @Override
     public void draw(PApplet sketch) {
         if (turned) {
-            sketch.fill(150);
+            sketch.fill(164, 134, 125);
             sketch.rect(x, y, width, height);
             return;
         }
         if (isSelected()) {
             sketch.stroke(0);
-            sketch.strokeWeight(4);
+            sketch.strokeWeight(2);
         } else {
             sketch.stroke(0);
         }
         if (img != null) {
             sketch.image(img, x, y, width, height);
         } else {
-            sketch.fill(255);
+            sketch.fill(200);
             sketch.rect(x, y, width, height);
             sketch.fill(0);
             sketch.text(value, x + 10, y + 10);
-        }
+        } 
         sketch.strokeWeight(1);
     }
 

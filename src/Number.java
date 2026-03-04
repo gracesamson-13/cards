@@ -6,7 +6,7 @@ public Number() {
 
 @Override 
 public String getDescription() { 
-    return "A card with a numeric value (2–10)."; 
+    return "Card with a numeric value (2–10)."; 
 }
 
 }

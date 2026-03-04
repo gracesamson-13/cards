@@ -1,21 +1,15 @@
 import processing.core.PApplet;
 import processing.core.PImage; 
 
-public class Discard extends Card {
+public class Discard {
 
-// float a = 600;   
-// float b = 450;   
-// float w = 150;   
-// float h = 50;   
+float a = 400;   
+float b = 250;   
+float w = 150;   
+float h = 50;   
 
-//     boolean isClicked(int mouseX, int mouseY) {
-//         return mouseX >= a && mouseX <= a + width &&
-//                mouseY >= b && mouseY <= b + height;
-//     }
-
-//     public void draw(PApplet app) {
-//         app.rect(a, b, w, h);
-//     } 
-
+Discard(String value, String suit) {
+    super(value, suit);
+}
 
 }

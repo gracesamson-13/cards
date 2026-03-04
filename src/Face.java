@@ -6,7 +6,7 @@ public class Face extends CardType {
 
     @Override
     public String getDescription() {
-        return "A card with face value (J, Q, K, A).";
+        return "Card with face value (J, Q, K, A).";
     }
 }
 
