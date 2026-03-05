@@ -66,21 +66,13 @@ public class App extends PApplet {
         textAlign(CENTER, CENTER);
         text("Draw", cardGame.drawButton.x + cardGame.drawButton.width / 2, cardGame.drawButton.y + cardGame.drawButton.height / 2);
 
-        // //Draw knock button
-        // fill(236, 241, 179);
-        // cardGame.knockButton.draw(this);
-        // fill(0);
-        // textAlign(CENTER, CENTER);
-        // text("Knock", cardGame.knockButton.x + cardGame.knockButton.width / 2, cardGame.knockButton.y + cardGame.knockButton.height / 2);
 
-fill(236, 241, 179);
-cardGame.knockButton.draw(this);
+        fill(236, 241, 179);
+        cardGame.knockButton.draw(this);
 
-fill(0);
-textAlign(CENTER, CENTER);
-text("Knock",
-     cardGame.knockButton.x + cardGame.knockButton.width / 2,
-     cardGame.knockButton.y + cardGame.knockButton.height / 2);
+        fill(0);
+        textAlign(CENTER, CENTER);
+        text("Knock",cardGame.knockButton.x + cardGame.knockButton.width / 2, cardGame.knockButton.y + cardGame.knockButton.height / 2);
 
 
         // Display current player
@@ -89,11 +81,9 @@ text("Knock",
         text("Player Turn: " + cardGame.getCurrentPlayer(), width / 2, 20);
 
         // Display deck size
-        text("Card deck Size: " + cardGame.getDeckSize(), width / 2,
-                height - 20);
+        text("Card deck Size: " + cardGame.getDeckSize(), width / 2, height - 20);
 
     
-
         // Display last played card
         if (cardGame.getLastPlayedCard() != null) {
             cardGame.getLastPlayedCard().setPosition(width / 2 - 40, height / 2 - 60, 80, 120);
@@ -112,15 +102,15 @@ text("Knock",
 
         cardGame.drawChoices(this);
     
-fill(0);
-textSize(20);
-textAlign(CENTER, CENTER);
-text(cardGame.gameMessage, 200, height / 2);
-
-
-
+        fill(0);
+        textSize(20);
+        textAlign(CENTER, CENTER);
+        text(cardGame.gameMessage, 200, height / 2);
+        
+        fill(181, 5, 79);
+        textSize(20);
+        text("Click 'R' to Restart", 155, 343);
     }
-
 
     @Override
     public void mousePressed() {
@@ -130,6 +120,13 @@ text(cardGame.gameMessage, 200, height / 2);
         cardGame.handleDiscardButtonClick(mouseX, mouseY);
 
     }
+
+    @Override
+    public void keyPressed() {
+    if (key == 'R' || key == 'r') {
+        cardGame.restartGame();
+    }
+}
 
 }
 
