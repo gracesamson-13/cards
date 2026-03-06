@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -25,9 +24,25 @@ public class CardGame {
     int drawButtonWidth = 100;
     int drawButtonHeight = 35;
 
+ClickableRectangle knockButton;
+int knockButtonX = 100;
+int knockButtonY = 400;
+int knockButtonWidth = 100;
+int knockButtonHeight = 35;
+
+ClickableRectangle discardButton;
+    int discardButtonX = 350;
+    int discardButtonY = 400;
+    int discardButtonWidth = 100;
+    int discardButtonHeight = 35;
+
+
+String gameMessage = "";
+
+
     public CardGame() {
         initializeGame();
-        dealCards(6);
+        dealCards(9);
     }
 
     protected void initializeGame() {
@@ -37,6 +52,28 @@ public class CardGame {
         drawButton.y = drawButtonY;
         drawButton.width = drawButtonWidth;
         drawButton.height = drawButtonHeight;
+
+        knockButton = new ClickableRectangle();
+knockButton.x = knockButtonX;
+knockButton.y = knockButtonY;
+knockButton.width = knockButtonWidth;
+knockButton.height = knockButtonHeight;
+
+        // Initialize knock button
+    knockButton = new ClickableRectangle();
+    knockButton.x = knockButtonX;
+    knockButton.y = knockButtonY;
+    knockButton.width = knockButtonWidth;
+    knockButton.height = knockButtonHeight;
+
+
+    //initialize discard
+    discardButton = new ClickableRectangle();
+    discardButton.x = discardButtonX;
+    discardButton.y = discardButtonY;
+    discardButton.width = discardButtonWidth;
+    discardButton.height = discardButtonHeight;
+
 
         // Initialize decks and hands
         deck = new ArrayList<>();
@@ -99,7 +136,7 @@ public class CardGame {
             drawCard(playerOneHand);
             // Switch turns after drawing
             switchTurns();
-        }
+        } 
     }
 
     public boolean playCard(Card card, Hand hand) {
@@ -126,7 +163,7 @@ public class CardGame {
     }
 
     public String getCurrentPlayer() {
-        return playerOneTurn ? "Player One" : "Player Two";
+        return playerOneTurn ? "YOU" : "COMPUTER";
     }
 
     public Card getLastPlayedCard() {
@@ -191,6 +228,66 @@ public class CardGame {
     }
 
     public void drawChoices(PApplet app) {
-   
+    drawButton.draw(app);
+    }
+
+    public boolean hasThreeOfAKind(Hand hand) {
+    for (int i = 0; i < hand.getSize(); i++) {
+        Card card1 = hand.getCard(i);
+        int count = 1;
+        for (int g = i + 1; g < hand.getSize(); g++) {
+            Card card2 = hand.getCard(g);
+            if (card1.value.equals(card2.value)) {
+                count++;
+            }
+        }
+        if (count >= 3) {
+            return true;
+        }
+    }
+    return false;
+}
+
+   public void handleKnockButtonClick(int mouseX, int mouseY) {
+    if (knockButton.isClicked(mouseX, mouseY)) {
+        boolean playerWin = hasThreeOfAKind(playerOneHand);
+        boolean computerWin = hasThreeOfAKind(playerTwoHand);
+
+        gameActive = false;
+        if (playerWin) {
+            gameMessage = "You win!";} 
+        else if (computerWin) {
+            gameMessage = "Computer wins!"; } 
+        System.out.println(gameMessage); }
+}
+
+public void handleDiscardButtonClick(int mouseX, int mouseY) {
+    if (discardButton.isClicked(mouseX, mouseY)) {
+        if (playerOneHand.getSize() > 0) {
+            int randomIndex = (int)(Math.random() * playerOneHand.getSize());
+            Card removed = playerOneHand.getCard(randomIndex);
+            playerOneHand.removeCard(removed);
+            System.out.println("Discarded: " + removed.value);
+        }
     }
 }
+public void restartGame() {
+    deck.clear();
+    discardPile.clear();
+    playerOneHand = new Hand();
+    playerTwoHand = new Hand();
+
+    selectedCard = null;
+    lastPlayedCard = null;
+    playerOneTurn = true;
+    gameMessage = "";
+
+    createDeck();
+    dealCards(9);
+}
+
+
+}
+
+
+
